@@ -15,14 +15,14 @@ const restSearchApi = async (KEYID, latitude, longitude) => {
       const res = await axios.get(encodeURI(url));
 
       // 距離追加
-      for(let rest of res.data.rest) {
+      for (let rest of res.data.rest) {
         rest.distance = distance(
           latitude,
           longitude,
           rest.latitude,
           rest.longitude
         );
-      };
+      }
 
       resolve(res.data.rest); // この下には name, latitude, longitude, image_urlを含む複数レストランの配列がある。
     } catch (err) {
@@ -34,10 +34,9 @@ const restSearchApi = async (KEYID, latitude, longitude) => {
 const restByIdApi = async (KEYID, id) => {
   return new Promise(async (resolve, reject) => {
     try {
-       const url = `${BASE_URL_REST_SEARCH}?keyid=${KEYID}&id=${id}`;
+      const url = `${BASE_URL_REST_SEARCH}?keyid=${KEYID}&id=${id}`;
       console.log(url);
       const res = await axios.get(url);
-
       resolve(res.data.rest[0]); // この下には name, latitude, longitude, image_urlを含む複数レストランの配列がある。
     } catch (err) {
       reject(err.response); // この下には status, statusTextなどある。
@@ -46,10 +45,10 @@ const restByIdApi = async (KEYID, id) => {
 };
 
 const imageUrlsByIdApi = async (KEYID, shopId) => {
-  return new Promise(async (resolve, reject) => {
+  return new Promise(async (resolve) => {
     try {
-       const url = `${BASE_URL_PHOTO_SEARCH}?keyid=${KEYID}&shop_id=${shopId}`;
-      // console.log(url);
+      const url = `${BASE_URL_PHOTO_SEARCH}?keyid=${KEYID}&shop_id=${shopId}`;
+      console.log(url);
       const res = await axios.get(url);
 
       const urls = [];
@@ -58,9 +57,12 @@ const imageUrlsByIdApi = async (KEYID, shopId) => {
         urls.push(res.data.response[i].photo.image_url.url_320);
       }
 
+      console.table(urls);
+
       resolve(urls); // この下にはphoto.image_url.url_1024 を含む複数レストランの配列がある。
-    } catch (err) {
-      reject(err.response); // この下には status, statusTextなどある。
+    } catch (err) {// この下には status, statusTextなどある。
+      console.log(err.response);
+      resolve([]); 
     }
   });
 };

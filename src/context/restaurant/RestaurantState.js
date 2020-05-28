@@ -1,5 +1,10 @@
 import React, { useReducer } from 'react';
-import { restSearchApi, restByIdApi } from '../../utils/restSearch';
+import {
+  restSearchApi,
+  restByIdApi,
+  imageUrlsByIdApi,
+} from '../../utils/restSearch';
+import { currentLocation } from '../../utils/location';
 import RestaurantContext from './restaurantContext';
 import RestaurantReducer from './restaurantReducer';
 import {
@@ -8,7 +13,6 @@ import {
   SET_LOADING,
   CLEAR_RESTAURANTS,
 } from '../types';
-
 
 let KEYID;
 
@@ -33,13 +37,14 @@ const RestaurantState = (props) => {
     setLoading();
     console.log('★searchRestaurants');
 
-    const latitude = 35.7;
-    const longitude = 139.7;
+    const { latitude, longitude } = await currentLocation();
+    console.log(`緯度:${latitude}　経度:${longitude}`);
 
     let res;
     try {
       res = await restSearchApi(KEYID, latitude, longitude);
     } catch (err) {
+      res = [];
       console.log(err.statusText);
     }
 
@@ -55,8 +60,9 @@ const RestaurantState = (props) => {
     let res;
     try {
       res = await restByIdApi(KEYID, id);
+      res.image_urls = await imageUrlsByIdApi(KEYID, id);
     } catch (err) {
-      console.log(err.statusText);
+      console.log(err);
     }
 
     console.log(res);

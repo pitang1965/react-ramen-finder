@@ -13,7 +13,7 @@ const Restaurant = ({ restaurant: { name, distance, image_url, id } }) => {
         style={{ width: '60px' }}
       />
       <h3>{name}</h3>
-      <h4>{distance} m</h4>
+      {distance !== Infinity ? <h4 className='text-success'>{distance} m</h4> : <h4 className='text-danger'>距離不明</h4>}
       <div>
         <Link to={`/restaurant/${id}`} className='btn btn-dark btn-sm my-1'>
           詳細

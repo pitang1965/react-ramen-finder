@@ -1,4 +1,5 @@
 import React, { Fragment, useEffect, useContext } from 'react';
+import Photos from '../photos/Photos';
 import Spinner from '../layout/Spinner';
 import { Link } from 'react-router-dom';
 import RestaurantContext from '../../context/restaurant/restaurantContext';
@@ -23,6 +24,7 @@ const RestDetails = ({ match }) => {
     holiday,
     e_money,
     credit_card,
+    image_urls,
   } = restaurant;
 
   if (loading) return <Spinner />;
@@ -75,6 +77,11 @@ const RestDetails = ({ match }) => {
             </li>
           </ul>
         </div>
+      </div>
+      <div>
+        {image_urls && (
+          <Photos imageUrls={image_urls} />
+        )}
       </div>
       <div className='card text-center'>
         <div className='badge badge-primary'>

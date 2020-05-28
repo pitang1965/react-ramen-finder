@@ -3,6 +3,9 @@
 const deg2rad = (deg) => deg * (Math.PI / 180);
 
 const distance = (latitude1, longitude1, latitude2, longitude2) => {
+  if (!latitude2 || !longitude2)
+    return (Infinity);
+  
   const r = 6378.137; // 赤道半径[km]
 
   const { sin, cos, acos, round } = Math;
