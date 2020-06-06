@@ -14,13 +14,15 @@ import {
   CLEAR_RESTAURANTS,
 } from '../types';
 
-let KEYID;
+let KEYID, DEMO_MODE;
 
 // ぐるなびAPI及び検索条件
 if (process.env.NODE_ENV !== 'production') {
   KEYID = process.env.REACT_APP_KEYID;
+  DEMO_MODE = process.env.REACT_APP_DEMO_MODE;
 } else {
   KEYID = process.env.KEYID;
+  DEMO_MODE = process.env.DEMO_MODE;
 }
 
 const RestaurantState = (props) => {
@@ -32,21 +34,32 @@ const RestaurantState = (props) => {
 
   const [state, dispatch] = useReducer(RestaurantReducer, initialState);
 
+  let latitude, longitude;
+
   // レストランを検索
   const searchRestaurants = async () => {
     setLoading();
-    console.log('★searchRestaurants');
 
-    const { latitude, longitude } = await currentLocation();
-    console.log(`緯度:${latitude}　経度:${longitude}`);
+    let res = [];
 
-    let res;
-    try {
-      res = await restSearchApi(KEYID, latitude, longitude);
-    } catch (err) {
-      res = [];
-      console.log(err.statusText);
-    }
+    await currentLocation(DEMO_MODE)
+      .then((obj) => {
+        latitude = obj.latitude;
+        longitude = obj.longitude;
+        console.log(`緯度:${latitude}　経度:${longitude}`);
+      })
+      .catch((err) => {
+        latitude = 35.7;
+        longitude = 139;
+        console.log(err);
+        return;
+      })
+      .then(async () => {
+        res = await restSearchApi(KEYID, latitude, longitude);
+      })
+      .catch((err) => {
+        console.log(err.statusText);
+      });
 
     dispatch({
       type: SEARCH_RESTAURANTS,
@@ -56,7 +69,6 @@ const RestaurantState = (props) => {
 
   const getRestaurant = async (id) => {
     setLoading();
-    console.log('★getRestaurant');
     let res;
     try {
       res = await restByIdApi(KEYID, id);

@@ -4,13 +4,12 @@ const Photo = ({ url }) => {
   console.log(`● ${url}`);
   return (
     <Fragment>
-      <div className='card grid-2'>
+      <div className='card'>
         <div className='all-center'>
           <img
             src={url}
-            // className='round-img'
             alt=''
-            style={{ width: 'auto' }}
+            style={{ width: 'auto', height: 'auto' }}
           />
         </div>
       </div>

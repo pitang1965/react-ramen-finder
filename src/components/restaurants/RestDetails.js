@@ -30,7 +30,7 @@ const RestDetails = ({ match }) => {
   if (loading) return <Spinner />;
 
   return (
-    <Fragment>
+    <div style={style}>
       <Link to='/' className='btn btn-light'>
         「近所のラーメン屋」に戻る
       </Link>
@@ -46,7 +46,7 @@ const RestDetails = ({ match }) => {
             </a>
           )}
 
-      <div className='card grid-2'>
+      <div className='card'>
         <div className='all-center'>
           {image_url && (
             <img
@@ -61,7 +61,7 @@ const RestDetails = ({ match }) => {
           <p>住所: {address}</p>
         </div>
         <div>
-          {pr && (
+          {pr && pr.pr_short && (
             <Fragment>
               <h3>PR(宣伝)</h3>
               <p>{pr.pr_short}</p>
@@ -91,8 +91,12 @@ const RestDetails = ({ match }) => {
           クレジットカード: {credit_card ? '使える' : '不可'}
         </div>
       </div>
-    </Fragment>
+    </div>
   );
+};
+
+const style = {
+  padding: "0.5rem 0.5rem",
 };
 
 export default RestDetails;

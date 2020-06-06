@@ -16,10 +16,10 @@
 }
 
 body {
-  font-family: 'Roboto', sans-serif;
+  font-family: Circular, "ヒラギノ角ゴ Pro", "Hiragino Kaku Gothic Pro", メイリオ, Meiryo, Osaka, "ＭＳ Ｐゴシック", "MS PGothic", "MS Gothic", "ＭＳ ゴシック", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 1rem;
   line-height: 1.6;
-  background-color: #fff;
+  background: #fdfdfd;
   color: #333;
 }
 
@@ -45,7 +45,16 @@ img {
   max-width: 1100px;
   margin: auto;
   overflow: hidden;
-  padding: 0 2rem;
+  padding: 0 2 rem;
+}
+
+.about-container {
+  display: block;
+  max-width: 60rem;
+  margin: 0 auto;
+  padding: 1rem;
+  text-align: left;
+  margin: 3rem;
 }
 
 /* Text Styles*/
@@ -64,10 +73,6 @@ img {
 .lead {
   font-size: 1.5rem;
   margin-bottom: 1rem;
-}
-
-.text-center {
-  text-align: center;
 }
 
 .text-primary {
@@ -98,6 +103,7 @@ img {
   text-align: left;
 }
 
+
 /* Center All */
 .all-center {
   display: flex;
@@ -111,9 +117,17 @@ img {
 
 /* Cards */
 .card {
-  padding: 1rem;
-  border: #ccc 1px dotted;
-  margin: 0.7rem 0;
+  text-align: center;
+  width: 100%;
+  background: #fff;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+  border-radius: 10px;
+  margin: auto;
+  overflow: hidden;
+}
+
+.restaurant {
+  height: 20rem;
 }
 
 /* List */
@@ -207,6 +221,7 @@ img {
   margin-right: 0.5rem;
   transition: opacity 0.2s ease-in;
   outline: none;
+  border-radius: 20px;
 }
 
 .btn-link {
@@ -355,7 +370,7 @@ table th {
   z-index: 1;
   width: 100%;
   opacity: 0.9;
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
 }
 
 .navbar ul {

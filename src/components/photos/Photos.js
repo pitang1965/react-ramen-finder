@@ -15,9 +15,13 @@ Photos.prototype = {
 };
 
 const style = {
-  display: 'grid',
-  gridTemplateColumns: 'repeat(3, 1fr)',
-  gridGap: '1rem',
+  display: "grid",
+  gridTemplateColumns: "repeat(auto-fit, minmax(15rem, 1fr))",
+  gridGap: "1rem",
+  justifyContent: "center",
+  alignItems: "center",
+  margin: "auto",
+  padding: "0.5rem 0.5rem",
 };
 
 export default Photos;

@@ -11,9 +11,19 @@ const Restaurants = () => {
   const { searchRestaurants, loading, restaurants } = restaurantContext;
 
   useEffect(() => {
-    searchRestaurants();
-    if (restaurants.length === 0) alertContext.setAlert('3km以内にお店が見つかりません。');
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    const search = () => {
+      searchRestaurants()
+        .then((res) => {
+          if (res.length === 0) {
+            alertContext.setAlert('3km以内にお店が見つかりません。');
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+    search();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   if (loading) {
@@ -31,8 +41,12 @@ const Restaurants = () => {
 
 const style = {
   display: 'grid',
-  gridTemplateColumns: 'repeat(3, 1fr)',
+  gridTemplateColumns: 'repeat(auto-fit, minmax(15rem, 1fr))',
   gridGap: '1rem',
+  justifyContent: 'center',
+  alignItems: 'center',
+  margin: 'auto',
+  padding: '0.5rem 0.5rem',
 };
 
 export default Restaurants;
