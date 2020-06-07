@@ -20,9 +20,11 @@ let KEYID, DEMO_MODE;
 if (process.env.NODE_ENV !== 'production') {
   KEYID = process.env.REACT_APP_KEYID;
   DEMO_MODE = process.env.REACT_APP_DEMO_MODE;
+  console.log('NODE_ENV is not production.');
 } else {
   KEYID = process.env.KEYID;
   DEMO_MODE = process.env.DEMO_MODE;
+  console.log(`NODE_ENV is :${process.env.NODE_ENV}`);
 }
 
 const RestaurantState = (props) => {
@@ -39,6 +41,8 @@ const RestaurantState = (props) => {
   // レストランを検索
   const searchRestaurants = async () => {
     setLoading();
+
+    console.log(`TEST: ${process.env.TEST}`);
 
     let res = [];
 

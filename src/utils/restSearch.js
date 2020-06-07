@@ -5,7 +5,7 @@ const BASE_URL_REST_SEARCH = 'https://api.gnavi.co.jp/RestSearchAPI/v3/'; // レ
 const BASE_URL_PHOTO_SEARCH = 'https://api.gnavi.co.jp/PhotoSearchAPI/v3/'; // 応援口コミAPI
 const CATEGORY_S = 'RSFST08008'; // ラーメン
 
-const restSearchApi = async (KEYID, latitude, longitude) => {
+export const restSearchApi = async (KEYID, latitude, longitude) => {
   return new Promise(async (resolve, reject) => {
     try {
       const range = 5;
@@ -31,7 +31,7 @@ const restSearchApi = async (KEYID, latitude, longitude) => {
   });
 };
 
-const restByIdApi = async (KEYID, id) => {
+export const restByIdApi = async (KEYID, id) => {
   return new Promise(async (resolve, reject) => {
     try {
       const url = `${BASE_URL_REST_SEARCH}?keyid=${KEYID}&id=${id}`;
@@ -44,7 +44,7 @@ const restByIdApi = async (KEYID, id) => {
   });
 };
 
-const imageUrlsByIdApi = async (KEYID, shopId) => {
+export const imageUrlsByIdApi = async (KEYID, shopId) => {
   return new Promise(async (resolve) => {
     try {
       const url = `${BASE_URL_PHOTO_SEARCH}?keyid=${KEYID}&shop_id=${shopId}`;
@@ -66,5 +66,3 @@ const imageUrlsByIdApi = async (KEYID, shopId) => {
     }
   });
 };
-
-module.exports = { restSearchApi, restByIdApi, imageUrlsByIdApi };

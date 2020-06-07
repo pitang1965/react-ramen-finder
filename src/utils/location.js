@@ -1,4 +1,4 @@
-const currentLocation = async (demoMode = false) => {
+export const currentLocation = async (demoMode = false) => {
   return new Promise((resolve, reject) => {
     let latitude = 35.7;
     let longitude = 139.7;
@@ -24,5 +24,3 @@ const currentLocation = async (demoMode = false) => {
     }
   });
 };
-
-module.exports = { currentLocation };

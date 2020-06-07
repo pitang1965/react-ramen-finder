@@ -6,7 +6,7 @@
 # testing
 
 # production
-/build
+# /build
 
 # misc
 .env.local
