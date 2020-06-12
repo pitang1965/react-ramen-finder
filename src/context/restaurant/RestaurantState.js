@@ -17,15 +17,10 @@ import {
 let KEYID, DEMO_MODE;
 
 // ぐるなびAPI及び検索条件
-if (process.env.NODE_ENV !== 'production') {
-  KEYID = process.env.REACT_APP_KEYID;
-  DEMO_MODE = process.env.REACT_APP_DEMO_MODE;
-  console.log('NODE_ENV is not production.');
-} else {
-  KEYID = process.env.KEYID;
-  DEMO_MODE = process.env.DEMO_MODE;
-  console.log(`NODE_ENV is :${process.env.NODE_ENV}`);
-}
+// 注意：APIキーはJavaScriptファイルに埋め込まれるので安全ではありません。
+// サーバー側のコードで扱うなどすべきです。
+KEYID = process.env.REACT_APP_KEYID;
+DEMO_MODE = process.env.REACT_APP_DEMO_MODE;
 
 const RestaurantState = (props) => {
   const initialState = {
@@ -46,7 +41,7 @@ const RestaurantState = (props) => {
 
     let res = [];
 
-    await currentLocation(DEMO_MODE)
+    await currentLocation(DEMO_MODE && DEMO_MODE === 'true')
       .then((obj) => {
         latitude = obj.latitude;
         longitude = obj.longitude;
