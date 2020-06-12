@@ -1,3 +1,16 @@
+![ramen-finder](https://user-images.githubusercontent.com/47315420/84511271-40aeee00-ad01-11ea-9c97-3fd6efa68dbc.gif)
+
+[ぐるなびAPI](https://api.gnavi.co.jp/api/)を使って学習中のReactで作ってみたのですが、サーバー側のコードなしでAPIキーを格納できないのですね。
+諦めました。
+下記プロジェクトを試す場合は、.envファイルでご自身のぐるなびAPIのキーを設定してください。
+
+トップ画面でナルトの画像が出ているのは、レストラン検索APIで取得したimage_url.shop_image1 などが空のためです。
+でも、それも腑に落ちないので、私のプログラムの不具合のような気もします。
+
+コードレビュー大歓迎です。
+
+なお、ナルトの絵を書いてくれたのは[ともらさん](https://youtu.be/4e9PS8PYrHo)です。
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
